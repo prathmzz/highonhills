@@ -3,8 +3,12 @@ import { motion } from "motion/react";
 import React, { useState } from "react";
 import { ImagesSlider } from "@/components/ui/images-slider";
 import Modal from "./animata/overlay/modal";
+import { useFewSeatsTrigger } from "./FewSeatsBannerProvider";
+
 export function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const triggerFewSeatsBanner = useFewSeatsTrigger();
+  
   const images = [
     "/images/hero1.jpg",
     "/images/hero2.jpg",
@@ -38,7 +42,7 @@ export function Hero() {
         Book your Seat now →
       </button>
 
-      <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+      <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} onClose={triggerFewSeatsBanner} />
       </motion.div>
     </ImagesSlider>
   );
