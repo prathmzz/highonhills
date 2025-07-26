@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Add fallback/defaults for custom animation vars */
+  --gap: 1rem;
+  --duration: 10s;
+
+  /* Optional font vars */
+  --font-sans: 'Arial', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+/* Shape shift keyframe (not useful alone unless triggered with JS or class) */
+@keyframes shape-shift {
+  0% {
+    width: 500px;
+    height: 200px;
+  }
+}
+
+/* Marquee animations */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+/* Utility classes */
+.marquee-horizontal {
+  animation: marquee-x var(--duration) linear infinite;
+}
+
+.marquee-vertical {
+  animation: marquee-y var(--duration) linear infinite;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Global body styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* ❌ Remove this block - not valid CSS syntax */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
